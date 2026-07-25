@@ -18,7 +18,7 @@ report generation.
 
 ## Installation
 ```bash
-git clone https://github.com/<your-username>/vuln-scanner.git
+git clone https://github.com/rahulrahul18286-cyber/vuln-scanner.git
 cd vuln-scanner
 python3 -m venv venv
 source venv/bin/activate
@@ -40,6 +40,23 @@ python3 main.py -t 10.10.10.10 -p 1-1024 -o scan1
 | `-t` | Target IP / domain | required |
 | `-p` | Port range (e.g. `1-1024`, `22,80,443`) | `1-1024` |
 | `-o` | Base filename for output reports | `vuln_report` |
+
+## Optional: Run as a system-wide command
+To run the tool from anywhere as `vulnscan` (like `nmap`), instead of
+`python3 main.py`:
+
+```bash
+chmod +x main.py
+sudo ln -sf $(pwd)/main.py /usr/local/bin/vulnscan
+```
+
+Make sure the first line (shebang) of `main.py` points to your venv's
+Python path, e.g.:
+#!/home/<your-username>/vuln-scanner/venv/bin/python3
+Then run from any directory:
+```bash
+vulnscan -t 10.10.10.10 -p 1-1024 -o scan1
+```
 
 ## Sample Output
 The tool generates:
